@@ -281,7 +281,7 @@ module Handsoap
         elsif options[:soap_action] == :none
           options[:soap_action] = nil
         end
-        doc = make_envelope do |body|
+        doc = make_envelope do |body,_|
           body.add action
         end
         dispatcher.request_block.call doc.find(action)

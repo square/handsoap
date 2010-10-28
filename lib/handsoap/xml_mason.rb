@@ -119,7 +119,7 @@ module Handsoap
           @attributes = options[:attributes]
         end
         if not value.nil?
-          set_value value.to_s, options
+          set_value value.to_s, options.include?(:raw)
         end
         if block_given?
           yield self
@@ -148,11 +148,11 @@ module Handsoap
       # By default the string is escaped, but you can pass the option flag :raw to inject XML.
       #
       # You usually won't need to call this method, but will rather use +add+
-      def set_value(value, options = {})
+      def set_value(value, raw = false)
         if @children.length > 0
           raise "Element already has children. Can't set value"
         end
-        if options && options.include?(:raw)
+        if raw
           @children = [RawContent.new(value)]
         else
           @children = [TextNode.new(value)]
