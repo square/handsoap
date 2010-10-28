@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'rubygems'
-require 'test/unit'
+require 'test_helper'
 require 'rails_generator'
 require 'rails_generator/scripts/generate'
 require "#{File.dirname(__FILE__)}/../generators/handsoap/handsoap_generator.rb"

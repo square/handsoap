@@ -1,9 +1,7 @@
-require 'rubygems'
-require 'test/unit'
+require 'test_helper'
 
 require "#{File.dirname(__FILE__)}/socket_server.rb"
 
-$LOAD_PATH << "#{File.dirname(__FILE__)}/../lib/"
 require "handsoap"
 require 'handsoap/http'
 

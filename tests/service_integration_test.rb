@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'rubygems'
-$LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
-require 'handsoap'
+require 'test_helper'
 
 class TestService < Handsoap::Service
   endpoint :uri => 'http://127.0.0.1:8088/mocksc002SOAP11Binding', :version => 1

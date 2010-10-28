@@ -1,7 +1,5 @@
-require 'rubygems'
-require 'test/unit'
+require 'test_helper'
 
-$LOAD_PATH << "#{File.dirname(__FILE__)}/../lib/"
 require "handsoap"
 
 class TestFollowRedirects < Test::Unit::TestCase

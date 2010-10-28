@@ -1,5 +1,5 @@
 # http://microjet.ath.cx/webrickguide/html/html_webrick.html
-require 'rubygems'
+require 'test_helper'
 require 'webrick'
 
 include WEBrick

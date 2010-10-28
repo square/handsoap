@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-require 'rubygems'
-require 'test/unit'
+require 'test_helper'
 
-$LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
-require 'handsoap'
+
 
 ACCOUNT_SERVICE_ENDPOINT = {
   :uri => 'http://ws.example.org/',

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-$LOAD_PATH << "#{File.dirname(__FILE__)}/../lib/"
+require 'test_helper'
 require "handsoap"
 require 'handsoap/xml_mason'
 
-require 'test/unit'
 
 class TestOfXmlMason < Test::Unit::TestCase
   def test_namespaces_are_automagically_assigned_upon_usage

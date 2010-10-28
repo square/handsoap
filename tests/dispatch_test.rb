@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-require 'rubygems'
-require 'test/unit'
-$LOAD_PATH << "#{File.dirname(__FILE__)}/../lib/"
+require 'test_helper'
 require 'handsoap.rb'
 
 def var_dump(val)
