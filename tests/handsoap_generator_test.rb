@@ -25,7 +25,7 @@ class HandsoapGeneratorTest < Test::Unit::TestCase
   end
 
   def invoke_generator!
-    Rails::Generator::Scripts::Generate.new.run(["handsoap", "https://mooshup.com/services/system/version?wsdl", "--backtrace", "--quiet"], :destination => fake_rails_root)
+    Rails::Generator::Scripts::Generate.new.run(["handsoap", "tests/Weather.wsdl", "--backtrace", "--quiet"], :destination => fake_rails_root)
   end
 
   def test_can_invoke_generator

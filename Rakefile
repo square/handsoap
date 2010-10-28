@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+
+require "rubygems"
+require "bundler"
+Bundler.setup
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
@@ -30,6 +35,9 @@ namespace :test do
     sh "rm -rf tests/rails_root"
   end
   Rake::TestTask.new :test do |test|
+    require "bundler"
+    Bundler.setup
+
     # Rake::Task['test:cleanup'].invoke
     test.test_files = FileList.new('tests/**/*_test.rb') do |list|
       list.exclude 'tests/benchmark_integration_test.rb'
