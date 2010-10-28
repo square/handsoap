@@ -6,6 +6,7 @@ module Handsoap
       class NetHttpDriver < AbstractDriver
         def self.load!
           require 'net/http'
+          require 'net/https'
           require 'uri'
         end
 
@@ -35,7 +36,10 @@ module Handsoap
           http_client.open_timeout = Handsoap.timeout
           http_client.read_timeout = Handsoap.timeout
           
-          http_client.use_ssl = true if url.scheme == 'https'
+          if url.scheme == 'https'
+            http_client.use_ssl = true
+            http_client.verify_mode = request.ssl_verify_mode if request.ssl_verify_mode
+          end
           
           if request.username && request.password
             # TODO: http://codesnippets.joyent.com/posts/show/1075
