@@ -39,6 +39,7 @@ module Handsoap
           if url.scheme == 'https'
             http_client.use_ssl = true
             http_client.verify_mode = request.ssl_verify_mode if request.ssl_verify_mode
+            http_client.ca_file = request.trust_ca_file if request.trust_ca_file
           end
           
           if request.username && request.password
