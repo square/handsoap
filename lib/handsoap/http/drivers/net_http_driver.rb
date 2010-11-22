@@ -40,7 +40,7 @@ module Handsoap
             http_client.use_ssl = true
 
             if request.ssl_verify_mode
-              http_client.verify_mode = true
+              http_client.verify_mode = request.ssl_verify_mode
               http_client.ca_file = request.trust_ca_file || OpenSSL::X509::DEFAULT_CERT_FILE
             end
           end
