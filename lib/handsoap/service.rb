@@ -219,6 +219,10 @@ module Handsoap
         if options.kind_of? String
           options = { :soap_action => options }
         end
+
+        options[:http_options] ||= {}
+        options[:http_options] = {:ssl_verify_mode => OpenSSL::SSL::VERIFY_PEER}.merge(options[:http_options])
+
         if options[:soap_action] == :auto
           options[:soap_action] = action.gsub(/^.+:/, "")
         elsif options[:soap_action] == :none
