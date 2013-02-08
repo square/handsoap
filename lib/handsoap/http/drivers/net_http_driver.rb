@@ -9,34 +9,48 @@ module Handsoap
           require 'uri'
         end
 
+        def net_http_class_for_url(url)
+          Net::HTTP
+        end
+
         def send_http_request(request)
           url = request.url
           unless url.kind_of? ::URI::Generic
             url = ::URI.parse(url)
           end
+          net_http_class = net_http_class_for_url(url)
           ::URI::Generic.send(:public, :path_query) # hackety hack
           path = url.path_query
           http_request = case request.http_method
                          when :get
-                           Net::HTTP::Get.new(path)
+                           net_http_class::Get.new(path)
                          when :post
-                           Net::HTTP::Post.new(path)
+                           net_http_class::Post.new(path)
                          when :put
-                           Net::HTTP::Put.new(path)
+                           net_http_class::Put.new(path)
                          when :delete
-                           Net::HTTP::Delete.new(path)
+                           net_http_class::Delete.new(path)
                          else
                            raise "Unsupported request method #{request.http_method}"
                          end
-                         
-          http_client = Net::HTTP.new(url.host, url.port)
-          
+
+          http_client = net_http_class.new(url.host, url.port)
+
           #http_client.read_timeout = 120
           http_client.open_timeout = Handsoap.timeout
           http_client.read_timeout = Handsoap.timeout
-          
+
           http_client.use_ssl = true if url.scheme == 'https'
-          
+
+          if url.scheme == 'https'
+            http_client.use_ssl = true
+
+            if request.ssl_verify_mode
+              http_client.verify_mode = request.ssl_verify_mode
+              http_client.ca_file = request.trust_ca_file || OpenSSL::X509::DEFAULT_CERT_FILE
+            end
+          end
+
           if request.username && request.password
             # TODO: http://codesnippets.joyent.com/posts/show/1075
             http_request.basic_auth request.username, request.password
