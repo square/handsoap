@@ -343,10 +343,14 @@ module Handsoap
       end
       def to_s
         case @element
-        when nil                                        : ""
-        when Nokogiri::XML::Attr                        : @element.value
-        when Nokogiri::XML::Text, Nokogiri::XML::CDATA  : @element.text
-        else                                              @element.content
+        when nil
+           ""
+        when Nokogiri::XML::Attr
+           @element.value
+        when Nokogiri::XML::Text, Nokogiri::XML::CDATA
+           @element.text
+        else
+           @element.content
         end
       end
     end
